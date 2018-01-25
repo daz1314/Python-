@@ -1,0 +1,118 @@
+NumPy中的统计函数
+np.random的统计函数（1）
+
+sum(a, axis = None):根据给定轴axis计算数组a 相关元素之和，axis整数或元组
+
+mean(a, axis = None)：根据给定轴axis计算数组a 相关元素的期望，axis整数或者元组
+
+average(a, axis = None, weights = None):根据给定轴axis计算数组a相关元素的加权平均值
+
+std(a, axis = None):根据给定轴axis计算数组a相关元素的标准差
+
+var(a, axis = None):根据给定轴axis计算数组a相关元素的方差
+
+axis = None是统计函数的标配参数
+
+In [1]:
+import numpy as np
+In [2]:
+a = np.arange(15).reshape(3, 5)
+In [3]:
+a
+Out[3]:
+array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14]])
+In [4]:
+np.sum(a)
+Out[4]:
+105
+In [5]:
+np.sum(a, axis = 1)
+Out[5]:
+array([10, 35, 60])
+In [7]:
+np.sum(a, axis = 0)
+Out[7]:
+array([15, 18, 21, 24, 27])
+In [8]:
+np.mean(a, axis = 1)
+Out[8]:
+array([  2.,   7.,  12.])
+In [9]:
+np.mean(a, axis = 0)
+Out[9]:
+array([ 5.,  6.,  7.,  8.,  9.])
+In [11]:
+np.average(a, axis = 0, weights = [10, 5, 1])
+Out[11]:
+array([ 2.1875,  3.1875,  4.1875,  5.1875,  6.1875])
+In [14]:
+np.std(a)
+Out[14]:
+4.3204937989385739
+In [15]:
+np.var(a)
+Out[15]:
+18.666666666666668
+在上面的例子中，维度讲一下。因为生成的是一个二维数组，所以有两个维度0和1。0是第一维度，代表最外围，也就是三个元素，1代表中间的维度，即每个元素内部的五个元素。所以，在average加权的时候，权值有三个，分别赋予最外围的三个元素。加权平均值=元素*权值/权值之和。
+
+np.random的统计函数（2）
+
+min(a) max(a):计算数组a中元素的最小值、最大值
+
+argmin(a) argmax(a)：计算数组a中元素最小值、最大值的降一维后下标
+
+unravel_index(index, shape):根据shape将一维下标index转换成多维下标
+
+ptp(a):计算数组a中元素最大值与最小值的差
+
+median(a)：计算数组a中元素的中位数（中值）
+
+In [16]:
+b = np.arange(15, 0, -1).reshape(3, 5)
+In [17]:
+b
+Out[17]:
+array([[15, 14, 13, 12, 11],
+       [10,  9,  8,  7,  6],
+       [ 5,  4,  3,  2,  1]])
+In [19]:
+b = np.arange(15, 0, -1).reshape(3,5)
+In [20]:
+b
+Out[20]:
+array([[15, 14, 13, 12, 11],
+       [10,  9,  8,  7,  6],
+       [ 5,  4,  3,  2,  1]])
+In [21]:
+np.max(b)
+Out[21]:
+15
+In [22]:
+np.argmax(b)
+Out[22]:
+0
+In [23]:
+np.argmin(b)
+Out[23]:
+14
+In [24]:
+np.unravel_index(np.argmax(b), b.shape)
+Out[24]:
+(0, 0)
+In [25]:
+np.unravel_index(np.argmin(b), b.shape)
+Out[25]:
+(2, 4)
+In [26]:
+np.ptp(b)
+Out[26]:
+14
+In [27]:
+np.median(b)
+Out[27]:
+8.0
+通过argmax和argmin得到的下标是扁平化后的下标，通过unravel_index的shape后将一维下标重塑成多维下标
+
+median()是个运算，结果是浮点型
