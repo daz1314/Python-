@@ -1,0 +1,27 @@
+A Guide For Installing Pyecharts
+在安装pyecharts模块， 进行python数据可视化的过程中， 有几种操作办法，具体如下。
+
+1、在能联网的情况下
+在cmd命令行输入：pip install pyecharts， 自行安装完毕，轻松加愉快
+
+2、 在电脑不能联网的场合
+有时候，你会面对一些死也不能上网的电脑， 你懂得， 需要另找电脑下载几个安装包导入。
+
+（1）pyecharts的安装包
+
+（2）future的安装包
+
+（3）jupyter-pip的安装包
+
+以上都能在python官网上搜索和下载到（pypi.python.org）
+
+下载完毕之后， 安装包里解压，每个安装包都会找到名为setup的py文件
+
+在cmd命令行用cd命令转到setup.py文件的路径下，输入python setup.py install命令，自动完成安装。
+
+注意：由于pyechart安装需要future和jupyter-pip的安装包，所以建议先安装后两者。如果最后pyecharts仍然安装不成功，显示缺什么东西，就去网上继续下载需要的安装包，原理及步骤都一样。
+
+3、Anaconda
+必须要提一下它，因为Anaconda上集成了Python、IDE及各类常用的库，十八般兵器基本都有。
+
+当然，像pyecharts这种十八般以外的还是没有，需要单独下载安装。
